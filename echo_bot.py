@@ -1,7 +1,7 @@
 import telebot
 
 with open("bot_control_token.txt", "r") as f:
-	token = f.readline()
+	token = f.readline().strip()
 
 bot = telebot.TeleBot(token)
 
