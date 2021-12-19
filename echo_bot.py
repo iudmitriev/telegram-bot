@@ -2,7 +2,7 @@
 Simple echo bot
 '''
 
-import telebot
+import telebot # pylint: disable=import-error
 
 with open("bot_control_token.txt", "r", encoding='utf8') as f:
     token = f.readline().strip()
