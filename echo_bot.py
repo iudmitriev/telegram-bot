@@ -3,9 +3,9 @@ Simple echo bot
 '''
 
 import telebot # pylint: disable=import-error
+import sys
 
-with open("bot_control_token.txt", "r", encoding='utf8') as f:
-    token = f.readline().strip()
+token = sys.argv[1]
 
 bot = telebot.TeleBot(token)
 
