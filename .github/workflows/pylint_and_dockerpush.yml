@@ -3,7 +3,7 @@ name: Pylint and push docker
 on: [push]
 
 jobs:
-  build:
+  pylint_and_push_docker:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -44,4 +44,3 @@ jobs:
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
-        build-args: BOT_TOKEN = ${{ secrets.BOT_TOKEN }}
