@@ -2,8 +2,8 @@
 Simple echo bot
 '''
 
-import telebot # pylint: disable=import-error
 import sys
+import telebot # pylint: disable=import-error
 
 token = sys.argv[1]
 
