@@ -22,7 +22,7 @@ def send_help(message):
     '''
     Sends description
     '''
-    bot.reply_to(message, "This is simple echo bot.")
+    bot.reply_to(message, "This is still simple echo bot, it will be better")
 
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
