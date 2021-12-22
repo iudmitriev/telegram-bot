@@ -80,7 +80,7 @@ def send_meme(message):
 
             get_image(image_url, tmp_file_address)
 
-            if os.path.getsize(tmp_file_address) > 5000000:
+            if os.path.getsize(os.getcwd() + '/' + tmp_file_address) > 5000000:
                 raise ValueError("File is too big")
 
             with open(tmp_file_address, 'rb') as tmp_file:
