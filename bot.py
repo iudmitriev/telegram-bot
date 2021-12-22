@@ -27,7 +27,7 @@ def send_help(message):
     '''
     Sends description
     '''
-    bot.reply_to(message, "Use /meme to get random meme\n Use /help to see comands list")
+    bot.reply_to(message, "Use /meme to get random meme\nUse /help to see commands list")
 
 def get_image(url, file):
     '''
