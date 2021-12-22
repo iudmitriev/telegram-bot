@@ -65,26 +65,35 @@ def send_meme(message):
     Sends random meme from best of /r/memes
     '''
     chat_id = message.chat.id
-    tmp_file_address = 'img_' + str(chat_id) + '_' + str(random.randrange(0, 2**32-1)) + '.png'
+    number_of_tries = 0
 
-    try:
-        memes_json = get_json_with_memes()
-        random_index = random.randrange(0, 100)
+    while number_of_tries < 5:
+        tmp_file_address = 'img_' + str(chat_id) + '_' + str(random.randrange(0, 2**32-1)) + '.png'
+        try:
 
-        title = memes_json["data"]["children"][random_index]["data"]["title"]
-        image_url = memes_json["data"]["children"][random_index]["data"]["url_overridden_by_dest"]
+            memes_json = get_json_with_memes()
+            random_index = random.randrange(0, 100)
 
-        get_image(image_url, tmp_file_address)
-        with open(tmp_file_address, 'rb') as tmp_file:
-            bot.send_message(chat_id, title)
-            bot.send_photo(chat_id, tmp_file)
+            post = memes_json["data"]["children"][random_index]["data"]
+            title = post["title"]
+            image_url = post["url_overridden_by_dest"]
 
-    except Exception as ex: # pylint: disable=W0703
-        bot.send_message(chat_id, "Something went wrong")
-        bot.send_message(chat_id, "Error message:\n" + str(ex))
-    finally:
-        if os.path.exists(tmp_file_address):
+            get_image(image_url, tmp_file_address)
+
+            if os.path.getsize(tmp_file_address) > 5000000:
+                raise ValueError("File is too big")
+
+            with open(tmp_file_address, 'rb') as tmp_file:
+                bot.send_message(chat_id, title)
+                bot.send_photo(chat_id, tmp_file)
             os.remove(tmp_file_address)
+            return
+
+        except Exception: # pylint: disable=W0703
+            number_of_tries += 1
+            if os.path.exists(tmp_file_address):
+                os.remove(tmp_file_address)
+    bot.send_message(chat_id, "Something went wrong")
 
 
 @bot.message_handler(func=lambda message: True)
