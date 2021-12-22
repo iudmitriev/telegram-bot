@@ -12,7 +12,7 @@ services:
         image: containrrr/watchtower
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
-        command: --interval 10 --scope myscope
+        command: --interval 60 --scope myscope
         labels:
             - "com.centurylinklabs.watchtower.scope=myscope"
 
