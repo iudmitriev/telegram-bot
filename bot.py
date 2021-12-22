@@ -80,12 +80,9 @@ def send_meme(message):
 
             get_image(image_url, tmp_file_address)
 
-            if os.path.getsize(os.getcwd() + '/' + tmp_file_address) > 5000000:
-                raise ValueError("File is too big")
-
             with open(tmp_file_address, 'rb') as tmp_file:
-                bot.send_message(chat_id, title)
                 bot.send_photo(chat_id, tmp_file)
+                bot.send_message(chat_id, title)
             os.remove(tmp_file_address)
             return
 
@@ -93,7 +90,7 @@ def send_meme(message):
             number_of_tries += 1
             if os.path.exists(tmp_file_address):
                 os.remove(tmp_file_address)
-    bot.send_message(chat_id, "Something went wrong")
+    bot.send_message(chat_id, "Something went terribly wrong")
 
 
 @bot.message_handler(func=lambda message: True)
