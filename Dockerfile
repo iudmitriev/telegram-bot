@@ -11,4 +11,4 @@ RUN pip3 install -r requirements.txt
 
 COPY . .
 
-CMD python3 echo_bot.py $BOT_TOKEN
+CMD python3 bot.py $BOT_TOKEN
