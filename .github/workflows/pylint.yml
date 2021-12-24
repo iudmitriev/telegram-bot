@@ -1,6 +1,9 @@
 name: Pylint
 
-on: [push, release]
+on:
+  push
+  release:
+    types: [published]
 
 jobs:
   pylint:
