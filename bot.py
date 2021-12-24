@@ -1,5 +1,6 @@
 '''
-Simple echo bot
+Данный бот по команде /meme присылает случайный из топ 100 мемов раздела hot сабреддита
+/r/memes и его заголовок.
 '''
 
 import sys
@@ -27,7 +28,9 @@ def send_help(message):
     '''
     Sends description
     '''
-    bot.reply_to(message, "Use /meme to get random meme\nUse /help to see commands list")
+    help_message =  "Use /meme to get random meme from /r/memes/hot\n"\
+                    "Use /help to see list of commands"
+    bot.reply_to(message, help_message)
 
 def get_image(url, file):
     '''
