@@ -1,6 +1,6 @@
 name: Push docker image
 
-on: [push]
+on: [release]
 
 jobs:
   push_to_dockerhub:
