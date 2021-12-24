@@ -3,7 +3,7 @@ name: Pylint
 on:
   push:
   release:
-    types: [published]
+    types: [released]
 
 jobs:
   pylint:
